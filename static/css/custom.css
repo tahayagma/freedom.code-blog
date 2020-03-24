@@ -1,0 +1,143 @@
+
+
+.container .btn-get-started:hover{
+        outline: none;
+        text-decoration: none;
+        background: #0085A1;
+        border: 2px solid #0085A1;
+        color: #fff;
+
+
+}
+
+.container .btn-get-started{
+    width:400px;
+    background: #none;
+    border: 2px solid #0085A1;
+    color: #0085A1;
+    outline: none;
+    font-size: 18px;
+    text-decoration:none;
+    padding:5px;
+    margin: 0px 0px 0px 320px;
+
+
+
+}
+
+.intro-header a{
+    border:2px solid #03C4EB;
+    color:#03C4EB;
+    text-decoration: none;
+    padding:5px;
+    float:right;
+    margin:0px 10px 0px 0px;
+}
+
+.intro-header a:hover{
+    transition: transform 0.3s, opacity 0.3s;
+
+}
+@media (max-width:576px),(max-width:768px),(max-width:992){
+    .container .btn-get-started{
+    margin:auto;
+    display:block;
+    width:133px;
+    }
+
+     #soneklen a{
+        background-color: #ccc;
+        margin:auto;
+        display:block;
+        width:250px;
+    }
+
+    .back-to-top{
+        margin:0px 0px 0px 0px;
+    }
+
+
+}
+
+
+.post-heading #detailtitle{
+    font-size:43px;
+    font-weight:400px;
+}
+
+.navbar-right input{
+    border-radius: 7px;
+    width:100px;
+    margin: 15px 0px 0px 0px;
+
+}
+
+.navbar-right input:hover{
+    width:250px;
+    transition: width 0.4s ease-in-out;
+    -webkit-transition: width 0.4s ease-in-out;
+    -moz-transition: width 0.4s ease-in-out;
+
+
+
+}
+
+
+#tags {
+    /*margin: -100px 0px 0px 800px;*/
+    width:150px;
+    height:50px;
+    display:inline;
+
+
+}
+
+#tags a{
+    text-decoration:none;
+    padding: 10px 24px;
+    border: 1px solid !important;
+    border-radius: 6px;
+    color: #f3f5f6 !important;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.52) !important;
+    display:inline-block;
+    }
+
+
+@media (max-width:576px), (max-width:768px){
+    #tags a{
+        margin:auto;
+
+
+
+    }
+}
+
+
+}
+#tags a:hover{
+    -webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+
+}
+
+.back-to-top {
+    display: inline-block;
+    color: #0085A1;
+    padding: 10px;
+    font-size: inherit;
+    position:fixed; /*posizyonun sabir kalmasını sağladık*/
+    top:500px;   /*üstten 500 px kadar boşluk bıraktık*/
+    right:20px;  /*alttan 20 px kadar boşluk bıraktık*/
+    display:none;  /*belirttiğimiz koşullarda görünmez olmasını sağladık*/
+
+
+}
+.back-to-top:hover{
+    background-color: #0085A1;
+    color:white;
+
+}

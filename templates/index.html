@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>freeedom.code</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{%static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="{%static 'css/clean-blog.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css'%}" rel="stylesheet">
+    <link rel="stylesheet"href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <!--<a class="navbar-brand" href="index.html">Start Bootstrap</a>-->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                      <form role="search" method="GET" action="">
+                          <input class="form-control" type="text" name="q" placeholder="Arama Yap ...">
+                      </form>
+                    </li>
+                    <li>
+                        <a href="{% url 'homepage'%}">Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aboutpage'%}">Hakkımda</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contactpage'%}">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static '/img/home-bg.jpg' %})">
+
+        <div class="container">
+
+            <div class="row" style="display:inline;">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>freedom.code</h1>
+                        <hr class="small">
+                        <span class="subheading">"Eğer fikrinizi yazıya dökemiyorsanız, onu kodlayamazsınız."<br>Peter Halpern</span>
+                         <div class="container" id="tags">
+                            <a href="#">Arduino</a>
+                            <a href="#">Pyqt5</a>
+                            <a href="#">RaspberryPi</a>
+                            <a href="#">Django</a><br><br>
+                            <a href="#">Scripts</a>
+                            <a href="#">Html</a>
+                            <a>Css</a>
+                            <a>OpenCv</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
+                {% for i in postlarim %}
+                    <div class="post-preview">
+                        <div class="thumbnail" style="border: 1.5px solid #ccc;">
+                                <a href="/anasayfa/{{i.slug}}">
+                                    {% if i.img %}
+                                        <img src="{{i.img.url }}" style="width:800px; heigth:300px;" class="responsive-img">
+                                    {% endif %}
+                                        <h3 class="post-title">
+                                            {{i.title }}
+                                        </h3></a>
+                                    <small style="font-size:15px;"><i class="fa fa-user">&nbsp;{{i.author}}</i>&emsp;&emsp;
+
+                                        <a href="?q={{i.tag}}"><i class="fa fa-tag">&nbsp;{{i.tag}}</i></a>&emsp;&emsp;
+
+                                        <i class="fa fa-calendar">{{i.publishing_date}}</i></small>
+                                        <hr style="border: 1.2px solid #ccc">
+                                        <p style="font-size:10px;">
+                                            {{i.content |safe |linebreaks|truncatechars:150}}
+                                        </p><br><br>
+                                    <!--<p class="post-meta">Oluşturulma tarihi: {{i.publishing_date}}</p>-->
+                            <a href="/anasayfa/{{i.slug}}" class="btn-get-started"><b>Devamını oku</b></a><p></p>
+                        </div>
+                    </div><br><br>
+                {% endfor %}
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        {% if postlarim.has_next %}
+                        <a href="?sayfa={{postlarim.next_page_number}} {% if request.q %}&q={{request.GET.q}}{% endif %}">Sonraki yazılar &rarr;</a>
+                        {% else %}
+                        <a>Diğer yazılar &rarr;</a>
+                        {% endif %}
+                    </li>
+                    <li class="previous" style="float:left;">
+                        {% if postlarim.has_previous %}
+                        <a href="?sayfa={{postlarim.previous_page_number}} {% if request.q %}&q={{request.GET.q}}{% endif %}">&larr;Önceki yazılar</a>
+                        {% else %}
+                        <a>&larr; Önceki yazılar</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div><br><br>
+            <section style="background-color: #ccc;">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="width:270px; margin:-50px 0px 0px 20px;  height:400px; background-color:#ccc; display:inline;"  id="soneklen">
+                    <h4 style="text-align:center;">Son Yazılar</h4>
+                    <hr style="border:1px solid;">
+                    {% for i in postlarim %}
+                        <a href="anasayfa/{{i.slug}}" style="font-size:16px; display: block;">{{i.title}}</a>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/freedom.code/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/freedom-codee/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; freedom.code 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a href="#" class="back-to-top"><i style="font-size:20px;" class="fa fa-chevron-up"></i></a>
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{%static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{%static 'js/contact_me.js' %}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+        <script>
+            $(document).ready(function(){
+                $(window).scroll(function(){
+                    if ($(this).scrollTop() > 500){ <!--eğer scroll 500 den büyükse butonun görünmesini sağladık-->
+                        $('.back-to-top').fadeIn();
+                    }
+                    else{
+                        $('.back-to-top').fadeOut(); <!--değilse butonun kaybolmasını sağladık-->
+                    }
+                });
+                $('.back-to-top').click(function(){  <!--tıklandığında sayfa başına götürür-->
+                    $("html, body").animate({scrollTop : 0},700); <!--animasyon hızını ayarladık-->
+                    return false;
+                });
+            });
+
+
+    </script>
+
+</body>
+
+</html>
