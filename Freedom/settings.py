@@ -135,7 +135,6 @@ EMAIL_HOST_PASSWORD='***123***'
 EMAIL_USE_TLS = True
 
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
 
 CKEDITOR_CONFIGS = {
     'default' :{
