@@ -4,7 +4,6 @@ from django.contrib import messages
 from .models import *
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
-from django.core.mail import send_mail
 # Create your views here.
 
 def homePage(request):
